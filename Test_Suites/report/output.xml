@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.2 (Python 3.7.3 on win32)" generated="20211215 13:11:19.953" rpa="false" schemaversion="2">
+<suite id="s1" name="Test Suites" source="C:\Users\Lenovo\Desktop\RPA\Test_Suites">
+<suite id="s1-s1" name="Tests Authentication" source="C:\Users\Lenovo\Desktop\RPA\Test_Suites\Tests_Authentication.robot">
+<kw name="Open Chrome Browser" library="CommonKeywords" type="SETUP">
+<arg>${App_URl}</arg>
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20211215 13:11:20.578" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0412E7B0&gt;</msg>
+<status status="PASS" starttime="20211215 13:11:20.577" endtime="20211215 13:11:20.578"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${ExecutionMode}'=='docker'</arg>
+<arg>Call Method</arg>
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20211215 13:11:20.579" endtime="20211215 13:11:20.580"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--no-sandbox</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20211215 13:11:20.580" endtime="20211215 13:11:20.581"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--window-size\=1920,1200</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20211215 13:11:20.581" endtime="20211215 13:11:20.581"/>
+</kw>
+<kw name="Create Webdriver" library="SeleniumLibrary">
+<arg>Chrome</arg>
+<arg>chrome_options=${options}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<msg timestamp="20211215 13:11:20.582" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20211215 13:11:20.582" endtime="20211215 13:11:30.004"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${url}</arg>
+<doc>Navigates the active browser instance to the provided ``url``.</doc>
+<msg timestamp="20211215 13:11:30.019" level="INFO">Opening url 'http://192.168.1.115:10054/#'</msg>
+<status status="PASS" starttime="20211215 13:11:30.004" endtime="20211215 13:12:45.810"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20211215 13:12:45.812" endtime="20211215 13:12:45.996"/>
+</kw>
+<status status="PASS" starttime="20211215 13:11:20.576" endtime="20211215 13:12:45.997"/>
+</kw>
+<test id="s1-s1-t1" name="TC001_UserLogin">
+<kw name="Login As User" library="CommonTestScript">
+<arg>${Username}</arg>
+<arg>${Password}</arg>
+<kw name="Input Data" library="CommonKeywords">
+<arg>${Username}</arg>
+<arg>@{Username_TxtFild}</arg>
+<kw name="Set Library Search Order" library="BuiltIn">
+<arg>SeleniumLibrary</arg>
+<arg>AppiumLibrary</arg>
+<doc>Sets the resolution order to use when a name matches multiple keywords.</doc>
+<status status="PASS" starttime="20211215 13:12:46.005" endtime="20211215 13:12:46.007"/>
+</kw>
+<kw name="Log Many" library="BuiltIn">
+<arg>${fieldValue}</arg>
+<arg>@{fieldDetails}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<msg timestamp="20211215 13:12:46.009" level="INFO">25480</msg>
+<msg timestamp="20211215 13:12:46.009" level="INFO">xpath=//*[@id="txtUsrName"]</msg>
+<msg timestamp="20211215 13:12:46.010" level="INFO">TextBox</msg>
+<msg timestamp="20211215 13:12:46.010" level="INFO">Username is not visible on login page</msg>
+<status status="PASS" starttime="20211215 13:12:46.008" endtime="20211215 13:12:46.010"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${fieldType}</var>
+<arg>${fieldDetails}[1]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20211215 13:12:46.011" level="INFO">${fieldType} = TextBox</msg>
+<status status="PASS" starttime="20211215 13:12:46.010" endtime="20211215 13:12:46.012"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${fieldID}</var>
+<arg>${fieldDetails}[0]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20211215 13:12:46.013" level="INFO">${fieldID} = xpath=//*[@id="txtUsrName"]</msg>
+<status status="PASS" starttime="20211215 13:12:46.012" endtime="20211215 13:12:46.013"/>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${isElementPresent}</var>
+<arg>SeleniumLibrary.Wait Until Element Is Visible</arg>
+<arg>${fieldID}</arg>
+<arg>40</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${fieldID}</arg>
+<arg>40</arg>
+<doc>Waits until element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211215 13:12:46.015" endtime="20211215 13:12:51.140"/>
+</kw>
+<msg timestamp="20211215 13:12:51.140" level="INFO">${isElementPresent} = True</msg>
+<status status="PASS" starttime="20211215 13:12:46.014" endtime="20211215 13:12:51.140"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${isElementPresent}'=='${false}'</arg>
+<arg>Fail</arg>
+<arg>${fieldDetails}[2]</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20211215 13:12:51.155" endtime="20211215 13:12:51.155"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${labeltext}</var>
+<arg>'${fieldType}'=='TextArea'</arg>
+<arg>SeleniumLibrary.Input Text</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='TextBox' and '${fieldValue}'!='NA'</arg>
+<arg>SeleniumLibrary.Input Text</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='TextBox' and '${fieldValue}'=='NA'</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Button'</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Link'</arg>
+<arg>SeleniumLibrary.Click Link</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='RadioButton'</arg>
+<arg>SeleniumLibrary.Select Radio Button</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='DropDown'</arg>
+<arg>SeleniumLibrary.Select From List By Value</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Jquery'</arg>
+<arg>SeleniumLibrary.Execute Javascript</arg>
+<arg>$('select#${fieldID}').val('${fieldValue}').change();</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='CheckBox'</arg>
+<arg>SeleniumLibrary.Select Checkbox</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Label' and '${fieldValue}'!='NA'</arg>
+<arg>SeleniumLibrary.Select Window</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Label' and '${fieldValue}'=='NA'</arg>
+<arg>SeleniumLibrary.Get Text</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='JqueryFilter'</arg>
+<arg>SeleniumLibrary.Execute Javascript</arg>
+<arg>$('#${fieldID}').filter(function(){ return $.text([this]) === '${fieldValue}';}).trigger('click');</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Element'</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='JavaScript'</arg>
+<arg>SeleniumLibrary.Execute Javascript</arg>
+<arg>return ${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Attribute'</arg>
+<arg>SeleniumLibrary.Get Element Attribute</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<msg timestamp="20211215 13:12:51.169" level="INFO">Typing text '25480' into text field 'xpath=//*[@id="txtUsrName"]'.</msg>
+<status status="PASS" starttime="20211215 13:12:51.155" endtime="20211215 13:12:51.906"/>
+</kw>
+<msg timestamp="20211215 13:12:51.906" level="INFO">${labeltext} = None</msg>
+<status status="PASS" starttime="20211215 13:12:51.155" endtime="20211215 13:12:51.906"/>
+</kw>
+<status status="PASS" starttime="20211215 13:12:46.003" endtime="20211215 13:12:51.906"/>
+</kw>
+<kw name="Input Data" library="CommonKeywords">
+<arg>${Password}</arg>
+<arg>@{Password_TxtFild}</arg>
+<kw name="Set Library Search Order" library="BuiltIn">
+<arg>SeleniumLibrary</arg>
+<arg>AppiumLibrary</arg>
+<doc>Sets the resolution order to use when a name matches multiple keywords.</doc>
+<status status="PASS" starttime="20211215 13:12:51.906" endtime="20211215 13:12:51.906"/>
+</kw>
+<kw name="Log Many" library="BuiltIn">
+<arg>${fieldValue}</arg>
+<arg>@{fieldDetails}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<msg timestamp="20211215 13:12:51.906" level="INFO">N@1234</msg>
+<msg timestamp="20211215 13:12:51.906" level="INFO">xpath=//*[@id="txtPassword"]</msg>
+<msg timestamp="20211215 13:12:51.906" level="INFO">TextBox</msg>
+<msg timestamp="20211215 13:12:51.906" level="INFO">Password is not visible on login page</msg>
+<status status="PASS" starttime="20211215 13:12:51.906" endtime="20211215 13:12:51.906"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${fieldType}</var>
+<arg>${fieldDetails}[1]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20211215 13:12:51.906" level="INFO">${fieldType} = TextBox</msg>
+<status status="PASS" starttime="20211215 13:12:51.906" endtime="20211215 13:12:51.906"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${fieldID}</var>
+<arg>${fieldDetails}[0]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20211215 13:12:51.906" level="INFO">${fieldID} = xpath=//*[@id="txtPassword"]</msg>
+<status status="PASS" starttime="20211215 13:12:51.906" endtime="20211215 13:12:51.906"/>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${isElementPresent}</var>
+<arg>SeleniumLibrary.Wait Until Element Is Visible</arg>
+<arg>${fieldID}</arg>
+<arg>40</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${fieldID}</arg>
+<arg>40</arg>
+<doc>Waits until element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211215 13:12:51.906" endtime="20211215 13:12:51.971"/>
+</kw>
+<msg timestamp="20211215 13:12:51.972" level="INFO">${isElementPresent} = True</msg>
+<status status="PASS" starttime="20211215 13:12:51.906" endtime="20211215 13:12:51.972"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${isElementPresent}'=='${false}'</arg>
+<arg>Fail</arg>
+<arg>${fieldDetails}[2]</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20211215 13:12:51.972" endtime="20211215 13:12:51.973"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${labeltext}</var>
+<arg>'${fieldType}'=='TextArea'</arg>
+<arg>SeleniumLibrary.Input Text</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='TextBox' and '${fieldValue}'!='NA'</arg>
+<arg>SeleniumLibrary.Input Text</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='TextBox' and '${fieldValue}'=='NA'</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Button'</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Link'</arg>
+<arg>SeleniumLibrary.Click Link</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='RadioButton'</arg>
+<arg>SeleniumLibrary.Select Radio Button</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='DropDown'</arg>
+<arg>SeleniumLibrary.Select From List By Value</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Jquery'</arg>
+<arg>SeleniumLibrary.Execute Javascript</arg>
+<arg>$('select#${fieldID}').val('${fieldValue}').change();</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='CheckBox'</arg>
+<arg>SeleniumLibrary.Select Checkbox</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Label' and '${fieldValue}'!='NA'</arg>
+<arg>SeleniumLibrary.Select Window</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Label' and '${fieldValue}'=='NA'</arg>
+<arg>SeleniumLibrary.Get Text</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='JqueryFilter'</arg>
+<arg>SeleniumLibrary.Execute Javascript</arg>
+<arg>$('#${fieldID}').filter(function(){ return $.text([this]) === '${fieldValue}';}).trigger('click');</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Element'</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='JavaScript'</arg>
+<arg>SeleniumLibrary.Execute Javascript</arg>
+<arg>return ${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Attribute'</arg>
+<arg>SeleniumLibrary.Get Element Attribute</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<msg timestamp="20211215 13:12:51.976" level="INFO">Typing text 'N@1234' into text field 'xpath=//*[@id="txtPassword"]'.</msg>
+<status status="PASS" starttime="20211215 13:12:51.976" endtime="20211215 13:12:52.164"/>
+</kw>
+<msg timestamp="20211215 13:12:52.164" level="INFO">${labeltext} = None</msg>
+<status status="PASS" starttime="20211215 13:12:51.974" endtime="20211215 13:12:52.164"/>
+</kw>
+<status status="PASS" starttime="20211215 13:12:51.906" endtime="20211215 13:12:52.164"/>
+</kw>
+<kw name="Input Data" library="CommonKeywords">
+<arg>NA</arg>
+<arg>@{Login_btn}</arg>
+<kw name="Set Library Search Order" library="BuiltIn">
+<arg>SeleniumLibrary</arg>
+<arg>AppiumLibrary</arg>
+<doc>Sets the resolution order to use when a name matches multiple keywords.</doc>
+<status status="PASS" starttime="20211215 13:12:52.165" endtime="20211215 13:12:52.166"/>
+</kw>
+<kw name="Log Many" library="BuiltIn">
+<arg>${fieldValue}</arg>
+<arg>@{fieldDetails}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<msg timestamp="20211215 13:12:52.166" level="INFO">NA</msg>
+<msg timestamp="20211215 13:12:52.167" level="INFO">xpath=//*[@id="btnLogin"]</msg>
+<msg timestamp="20211215 13:12:52.167" level="INFO">Button</msg>
+<msg timestamp="20211215 13:12:52.167" level="INFO">Login button is not visible on login page</msg>
+<status status="PASS" starttime="20211215 13:12:52.166" endtime="20211215 13:12:52.167"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${fieldType}</var>
+<arg>${fieldDetails}[1]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20211215 13:12:52.167" level="INFO">${fieldType} = Button</msg>
+<status status="PASS" starttime="20211215 13:12:52.167" endtime="20211215 13:12:52.168"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${fieldID}</var>
+<arg>${fieldDetails}[0]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20211215 13:12:52.168" level="INFO">${fieldID} = xpath=//*[@id="btnLogin"]</msg>
+<status status="PASS" starttime="20211215 13:12:52.168" endtime="20211215 13:12:52.168"/>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${isElementPresent}</var>
+<arg>SeleniumLibrary.Wait Until Element Is Visible</arg>
+<arg>${fieldID}</arg>
+<arg>40</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${fieldID}</arg>
+<arg>40</arg>
+<doc>Waits until element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211215 13:12:52.169" endtime="20211215 13:12:52.208"/>
+</kw>
+<msg timestamp="20211215 13:12:52.208" level="INFO">${isElementPresent} = True</msg>
+<status status="PASS" starttime="20211215 13:12:52.169" endtime="20211215 13:12:52.208"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${isElementPresent}'=='${false}'</arg>
+<arg>Fail</arg>
+<arg>${fieldDetails}[2]</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20211215 13:12:52.209" endtime="20211215 13:12:52.210"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${labeltext}</var>
+<arg>'${fieldType}'=='TextArea'</arg>
+<arg>SeleniumLibrary.Input Text</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='TextBox' and '${fieldValue}'!='NA'</arg>
+<arg>SeleniumLibrary.Input Text</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='TextBox' and '${fieldValue}'=='NA'</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Button'</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Link'</arg>
+<arg>SeleniumLibrary.Click Link</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='RadioButton'</arg>
+<arg>SeleniumLibrary.Select Radio Button</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='DropDown'</arg>
+<arg>SeleniumLibrary.Select From List By Value</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Jquery'</arg>
+<arg>SeleniumLibrary.Execute Javascript</arg>
+<arg>$('select#${fieldID}').val('${fieldValue}').change();</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='CheckBox'</arg>
+<arg>SeleniumLibrary.Select Checkbox</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Label' and '${fieldValue}'!='NA'</arg>
+<arg>SeleniumLibrary.Select Window</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Label' and '${fieldValue}'=='NA'</arg>
+<arg>SeleniumLibrary.Get Text</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='JqueryFilter'</arg>
+<arg>SeleniumLibrary.Execute Javascript</arg>
+<arg>$('#${fieldID}').filter(function(){ return $.text([this]) === '${fieldValue}';}).trigger('click');</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Element'</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='JavaScript'</arg>
+<arg>SeleniumLibrary.Execute Javascript</arg>
+<arg>return ${fieldID}</arg>
+<arg>ELSE IF</arg>
+<arg>'${fieldType}'=='Attribute'</arg>
+<arg>SeleniumLibrary.Get Element Attribute</arg>
+<arg>${fieldID}</arg>
+<arg>${fieldValue}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${fieldID}</arg>
+<doc>Click element identified by ``locator``.</doc>
+<msg timestamp="20211215 13:12:52.214" level="INFO">Clicking element 'xpath=//*[@id="btnLogin"]'.</msg>
+<status status="PASS" starttime="20211215 13:12:52.214" endtime="20211215 13:12:52.412"/>
+</kw>
+<msg timestamp="20211215 13:12:52.412" level="INFO">${labeltext} = None</msg>
+<status status="PASS" starttime="20211215 13:12:52.210" endtime="20211215 13:12:52.413"/>
+</kw>
+<status status="PASS" starttime="20211215 13:12:52.165" endtime="20211215 13:12:52.413"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20211215 13:12:57.417" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20211215 13:12:52.413" endtime="20211215 13:12:57.417"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<msg timestamp="20211215 13:12:57.733" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-8.png"&gt;&lt;img src="selenium-screenshot-8.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20211215 13:12:57.417" endtime="20211215 13:12:57.733"/>
+</kw>
+<status status="PASS" starttime="20211215 13:12:46.001" endtime="20211215 13:12:57.733"/>
+</kw>
+<kw name="Log Out As User" library="CommonTestScript">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20211215 13:12:59.738" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20211215 13:12:57.733" endtime="20211215 13:12:59.738"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//*[@id="navbarNavDropdown"]/ul[2]/li[2]/a/i</arg>
+<doc>Click element identified by ``locator``.</doc>
+<msg timestamp="20211215 13:12:59.738" level="INFO">Clicking element '//*[@id="navbarNavDropdown"]/ul[2]/li[2]/a/i'.</msg>
+<status status="PASS" starttime="20211215 13:12:59.738" endtime="20211215 13:13:00.318"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//*[@id="navbarNavDropdown"]/ul[2]/li[2]/div/a[3]</arg>
+<doc>Click element identified by ``locator``.</doc>
+<msg timestamp="20211215 13:13:00.319" level="INFO">Clicking element '//*[@id="navbarNavDropdown"]/ul[2]/li[2]/div/a[3]'.</msg>
+<status status="PASS" starttime="20211215 13:13:00.318" endtime="20211215 13:13:00.398"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>//div[@class="modal-content messageBox"]</arg>
+<doc>Waits until element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211215 13:13:00.398" endtime="20211215 13:13:00.918"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//div[@class="modal-content messageBox"]//div[@class="modal-footer"]//button[contains(text(),'Yes')]</arg>
+<doc>Click element identified by ``locator``.</doc>
+<msg timestamp="20211215 13:13:00.919" level="INFO">Clicking element '//div[@class="modal-content messageBox"]//div[@class="modal-footer"]//button[contains(text(),'Yes')]'.</msg>
+<status status="PASS" starttime="20211215 13:13:00.919" endtime="20211215 13:13:00.987"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>//*[@id="navbar-wrapper"]/nav/div[1]/a</arg>
+<doc>Waits until element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20211215 13:13:00.987" endtime="20211215 13:13:01.024"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<msg timestamp="20211215 13:13:01.510" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-9.png"&gt;&lt;img src="selenium-screenshot-9.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20211215 13:13:01.025" endtime="20211215 13:13:01.510"/>
+</kw>
+<status status="PASS" starttime="20211215 13:12:57.733" endtime="20211215 13:13:01.510"/>
+</kw>
+<status status="PASS" starttime="20211215 13:12:45.997" endtime="20211215 13:13:01.510"/>
+</test>
+<kw name="Close All Browsers" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20211215 13:13:01.626" endtime="20211215 13:13:07.520"/>
+</kw>
+<doc>Suite description</doc>
+<status status="PASS" starttime="20211215 13:11:20.022" endtime="20211215 13:13:07.520"/>
+</suite>
+<status status="PASS" starttime="20211215 13:11:19.968" endtime="20211215 13:13:07.525"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test Suites">Test Suites</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Tests Authentication">Test Suites.Tests Authentication</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
